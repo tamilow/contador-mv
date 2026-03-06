@@ -2,114 +2,137 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>contador mvd ☁️</title>
+<title>cuánto falta? ☁️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-    margin:0;
-    height:100vh;
-    overflow:hidden;
-    font-family:'Quicksand',sans-serif;
-    background: linear-gradient(180deg,#dff6ff,#9dd6ff,#74b9f2);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:url("https://cur.cursors-4u.net/cursors/cur-13/cur1143.cur"),auto;
+margin:0;
+height:100vh;
+overflow:hidden;
+font-family:'Comfortaa',cursive;
+background:linear-gradient(180deg,#dff6ff,#a8dcff,#7ec4f5);
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:url("https://cur.cursors-4u.net/cursors/cur-13/cur1143.cur"),auto;
 }
 
 /* contenedor */
 
 .container{
-    text-align:center;
-    background:rgba(255,255,255,0.65);
-    backdrop-filter:blur(10px);
-    padding:50px;
-    border-radius:30px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.15);
-    z-index:2;
+text-align:center;
+background:rgba(255,255,255,0.65);
+backdrop-filter:blur(10px);
+padding:50px;
+border-radius:30px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+z-index:2;
 }
 
-/* titulo */
-
 h1{
-    font-family:'Pacifico',cursive;
-    font-size:2.4em;
-    color:#2a6fa6;
+font-family:'Pacifico',cursive;
+font-size:2.5em;
+color:#2a6fa6;
+margin-bottom:10px;
 }
 
 /* boton */
 
 button{
-    margin-top:20px;
-    padding:15px 35px;
-    border:none;
-    border-radius:25px;
-    font-size:1.3em;
-    font-family:'Quicksand',sans-serif;
-    background:#6fbef0;
-    color:white;
-    cursor:pointer;
-    transition:0.3s;
+padding:15px 35px;
+border:none;
+border-radius:30px;
+font-size:1.3em;
+background:#6ec1f4;
+color:white;
+font-family:'Comfortaa';
+cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
-    background:#4da6e0;
-    transform:scale(1.05);
+background:#4da6e0;
+transform:scale(1.05);
 }
 
 /* contador */
 
 #countdown{
-    margin-top:25px;
-    font-size:2.6em;
-    font-weight:600;
-    color:#134d7a;
-    display:none;
+margin-top:30px;
+display:none;
+}
+
+/* cajas */
+
+.timebox{
+display:inline-block;
+background:rgba(255,255,255,0.9);
+padding:20px;
+margin:10px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+min-width:90px;
+animation:float 4s ease-in-out infinite;
+}
+
+.number{
+font-size:2.5em;
+color:#1e5f8a;
+font-weight:700;
+}
+
+.label{
+font-size:0.9em;
+color:#4d7ea8;
+}
+
+.timebox:nth-child(2){animation-delay:0.5s;}
+.timebox:nth-child(3){animation-delay:1s;}
+.timebox:nth-child(4){animation-delay:1.5s;}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
 }
 
 /* nubes */
 
 .cloud{
-    position:absolute;
-    font-size:80px;
-    opacity:0.6;
-    animation:flotar 60s linear infinite;
+position:absolute;
+font-size:90px;
+opacity:0.6;
+animation:flotar 60s linear infinite;
 }
 
-.cloud:nth-child(1){top:10%; left:-200px;}
-.cloud:nth-child(2){top:40%; left:-300px; animation-duration:80s;}
-.cloud:nth-child(3){top:70%; left:-250px; animation-duration:100s;}
+.cloud:nth-child(1){top:10%;left:-200px;}
+.cloud:nth-child(2){top:40%;left:-300px;animation-duration:80s;}
+.cloud:nth-child(3){top:70%;left:-250px;animation-duration:100s;}
 
 @keyframes flotar{
-    from{transform:translateX(0);}
-    to{transform:translateX(120vw);}
+from{transform:translateX(0);}
+to{transform:translateX(120vw);}
 }
 
 /* particulas */
 
 .particle{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:white;
-    border-radius:50%;
-    opacity:0.6;
-    animation:subir linear infinite;
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0.7;
+animation:subir linear infinite;
 }
 
 @keyframes subir{
-    from{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-    10%{opacity:0.6;}
-    to{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
+from{transform:translateY(100vh);opacity:0;}
+10%{opacity:0.6;}
+to{transform:translateY(-10vh);opacity:0;}
 }
 
 </style>
@@ -127,32 +150,54 @@ button:hover{
 
 <button onclick="mostrarContador()">hola, cata!</button>
 
-<div id="countdown"></div>
+<div id="countdown">
+
+<div class="timebox">
+<div class="number" id="days">0</div>
+<div class="label">días</div>
+</div>
+
+<div class="timebox">
+<div class="number" id="hours">0</div>
+<div class="label">horas</div>
+</div>
+
+<div class="timebox">
+<div class="number" id="minutes">0</div>
+<div class="label">min</div>
+</div>
+
+<div class="timebox">
+<div class="number" id="seconds">0</div>
+<div class="label">seg</div>
+</div>
+
+</div>
 
 </div>
 
 <script>
 
-/* mostrar contador */
-
 function mostrarContador(){
-    document.getElementById("countdown").style.display="block";
+document.getElementById("countdown").style.display="block";
 }
 
-/* contador */
-
 function actualizarCuenta(){
-    const fechaObjetivo = new Date("April 2, 2026 00:00:00").getTime();
-    const ahora = new Date().getTime();
-    const diferencia = fechaObjetivo - ahora;
 
-    const dias = Math.floor(diferencia/(1000*60*60*24));
-    const horas = Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
-    const minutos = Math.floor((diferencia%(1000*60*60))/(1000*60));
-    const segundos = Math.floor((diferencia%(1000*60))/1000);
+const fechaObjetivo=new Date("April 2, 2026 00:00:00").getTime();
+const ahora=new Date().getTime();
+const diferencia=fechaObjetivo-ahora;
 
-    document.getElementById("countdown").innerHTML =
-    dias+" días<br>"+horas+"h "+minutos+"m "+segundos+"s";
+const dias=Math.floor(diferencia/(1000*60*60*24));
+const horas=Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
+const minutos=Math.floor((diferencia%(1000*60*60))/(1000*60));
+const segundos=Math.floor((diferencia%(1000*60))/1000);
+
+document.getElementById("days").innerText=dias;
+document.getElementById("hours").innerText=horas;
+document.getElementById("minutes").innerText=minutos;
+document.getElementById("seconds").innerText=segundos;
+
 }
 
 setInterval(actualizarCuenta,1000);
@@ -161,15 +206,17 @@ actualizarCuenta();
 /* particulas */
 
 function crearParticula(){
-    const p=document.createElement("div");
-    p.classList.add("particle");
 
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(5+Math.random()*5)+"s";
+const p=document.createElement("div");
+p.classList.add("particle");
 
-    document.body.appendChild(p);
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(5+Math.random()*5)+"s";
 
-    setTimeout(()=>{p.remove()},10000);
+document.body.appendChild(p);
+
+setTimeout(()=>{p.remove()},10000);
+
 }
 
 setInterval(crearParticula,200);
