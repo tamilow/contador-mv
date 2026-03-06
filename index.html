@@ -2,109 +2,178 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Cuenta regresiva para MVD 💙</title>
+<title>contador mvd ☁️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
+
 body{
     margin:0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(180deg,#bfe9ff,#6fb6e9);
     height:100vh;
+    overflow:hidden;
+    font-family:'Quicksand',sans-serif;
+    background: linear-gradient(180deg,#dff6ff,#9dd6ff,#74b9f2);
     display:flex;
     justify-content:center;
     align-items:center;
-    color:#0c3c60;
+    cursor:url("https://cur.cursors-4u.net/cursors/cur-13/cur1143.cur"),auto;
 }
+
+/* contenedor */
 
 .container{
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px);
-    border-radius:25px;
-    padding:40px;
     text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
-    max-width:500px;
+    background:rgba(255,255,255,0.65);
+    backdrop-filter:blur(10px);
+    padding:50px;
+    border-radius:30px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    z-index:2;
 }
+
+/* titulo */
 
 h1{
-    margin-top:0;
-    font-size:2em;
+    font-family:'Pacifico',cursive;
+    font-size:2.4em;
+    color:#2a6fa6;
 }
+
+/* boton */
+
+button{
+    margin-top:20px;
+    padding:15px 35px;
+    border:none;
+    border-radius:25px;
+    font-size:1.3em;
+    font-family:'Quicksand',sans-serif;
+    background:#6fbef0;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#4da6e0;
+    transform:scale(1.05);
+}
+
+/* contador */
 
 #countdown{
-    font-size:3em;
-    font-weight:bold;
-    margin:20px 0;
-    color:#084c7a;
+    margin-top:25px;
+    font-size:2.6em;
+    font-weight:600;
+    color:#134d7a;
+    display:none;
 }
 
-.subtitle{
-    font-size:1.2em;
-}
-
-.heart{
-    font-size:2em;
-    animation:latido 1.8s infinite;
-}
-
-@keyframes latido{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.2);}
-    100%{transform:scale(1);}
-}
+/* nubes */
 
 .cloud{
     position:absolute;
-    opacity:0.3;
-    font-size:60px;
+    font-size:80px;
+    opacity:0.6;
+    animation:flotar 60s linear infinite;
 }
 
-.cloud1{top:10%; left:10%;}
-.cloud2{bottom:15%; right:12%;}
+.cloud:nth-child(1){top:10%; left:-200px;}
+.cloud:nth-child(2){top:40%; left:-300px; animation-duration:80s;}
+.cloud:nth-child(3){top:70%; left:-250px; animation-duration:100s;}
+
+@keyframes flotar{
+    from{transform:translateX(0);}
+    to{transform:translateX(120vw);}
+}
+
+/* particulas */
+
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    opacity:0.6;
+    animation:subir linear infinite;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    10%{opacity:0.6;}
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="cloud cloud1">☁️</div>
-<div class="cloud cloud2">☁️</div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
 
 <div class="container">
-<h1>Cuenta regresiva para MVD ✨</h1>
 
-<div id="countdown">...</div>
+<h1>contador para mvd</h1>
 
-<div class="subtitle">
-para el <b>2 de abril de 2026</b>
-</div>
+<button onclick="mostrarContador()">hola, cata!</button>
 
-<div class="heart">💙</div>
+<div id="countdown"></div>
+
 </div>
 
 <script>
+
+/* mostrar contador */
+
+function mostrarContador(){
+    document.getElementById("countdown").style.display="block";
+}
+
+/* contador */
+
 function actualizarCuenta(){
     const fechaObjetivo = new Date("April 2, 2026 00:00:00").getTime();
     const ahora = new Date().getTime();
-
     const diferencia = fechaObjetivo - ahora;
 
-    const dias = Math.floor(diferencia / (1000*60*60*24));
-    const horas = Math.floor((diferencia % (1000*60*60*24)) / (1000*60*60));
-    const minutos = Math.floor((diferencia % (1000*60*60)) / (1000*60));
-    const segundos = Math.floor((diferencia % (1000*60)) / 1000);
+    const dias = Math.floor(diferencia/(1000*60*60*24));
+    const horas = Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
+    const minutos = Math.floor((diferencia%(1000*60*60))/(1000*60));
+    const segundos = Math.floor((diferencia%(1000*60))/1000);
 
     document.getElementById("countdown").innerHTML =
-        dias + " días<br>" +
-        horas + "h " + minutos + "m " + segundos + "s";
-
-    if(diferencia < 0){
-        document.getElementById("countdown").innerHTML =
-        "¡Llegó el día! 💙";
-    }
+    dias+" días<br>"+horas+"h "+minutos+"m "+segundos+"s";
 }
 
 setInterval(actualizarCuenta,1000);
 actualizarCuenta();
+
+/* particulas */
+
+function crearParticula(){
+    const p=document.createElement("div");
+    p.classList.add("particle");
+
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>{p.remove()},10000);
+}
+
+setInterval(crearParticula,200);
+
 </script>
 
 </body>
