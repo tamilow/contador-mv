@@ -19,7 +19,7 @@ background:linear-gradient(180deg,#dff6ff,#a8dcff,#7ec4f5);
 display:flex;
 justify-content:center;
 align-items:center;
-cursor:url("https://cur.cursors-4u.net/animals/ani-5/ani468.cur"),auto;
+cursor:url("https://cur.cursors-4u.net/cursors/cur-13/cur1160.cur"), auto;
 }
 
 .container{
@@ -119,12 +119,31 @@ to{transform:translateX(120vw);}
 
 .particle{
 position:absolute;
-width:6px;
-height:6px;
+width:5px;
+height:5px;
 background:white;
 border-radius:50%;
 opacity:0.7;
-animation:subir linear infinite;
+pointer-events:none;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-10vh) translateX(0);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) translateX(40px);
+opacity:0;
+}
+
 }
 
 @keyframes subir{
