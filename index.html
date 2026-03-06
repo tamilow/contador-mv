@@ -2,28 +2,96 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>only for cata, ☁️</title>
 
-<title>countdown for mvd!</title>
+<link rel="icon" type="image/png" href="favicon.png">
 
-<link rel="icon" href="favicon.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 height:100vh;
+overflow:hidden;
+font-family:'Comfortaa',cursive;
+background:linear-gradient(180deg,#dff6ff,#a8dcff,#7ec4f5);
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-font-family:'Quicksand',sans-serif;
-background:linear-gradient(#cfefff,#9ed7ff);
-overflow:hidden;
+cursor:url("https://cur.cursors-4u.net/animals/ani-5/ani468.cur"),auto;
+}
+
+.container{
 text-align:center;
-cursor:url("https://cur.cursors-4u.net/nature/nat-10/nat988.cur"),auto;
+background:rgba(255,255,255,0.65);
+backdrop-filter:blur(10px);
+padding:50px;
+border-radius:30px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+z-index:2;
+}
+
+h1{
+font-size:2.3em;
+color:#2a6fa6;
+margin-bottom:20px;
+}
+
+button{
+padding:15px 35px;
+border:none;
+border-radius:30px;
+font-size:1.2em;
+background:#6ec1f4;
+color:white;
+font-family:'Comfortaa';
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#4da6e0;
+transform:scale(1.05);
+}
+
+#countdown{
+margin-top:30px;
+display:none;
+}
+
+/* cajas del contador */
+
+.timebox{
+display:inline-block;
+background:rgba(255,255,255,0.9);
+padding:20px;
+margin:10px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+min-width:90px;
+animation:float 4s ease-in-out infinite;
+}
+
+.number{
+font-size:2.5em;
+color:#1e5f8a;
+font-weight:700;
+}
+
+.label{
+font-size:0.9em;
+color:#4d7ea8;
+}
+
+.timebox:nth-child(2){animation-delay:0.5s;}
+.timebox:nth-child(3){animation-delay:1s;}
+.timebox:nth-child(4){animation-delay:1.5s;}
+
+@keyframes float{
+0%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0);}
 }
 
 /* nubes */
@@ -31,107 +99,38 @@ cursor:url("https://cur.cursors-4u.net/nature/nat-10/nat988.cur"),auto;
 .cloud{
 position:absolute;
 opacity:0.6;
-animation:moveCloud linear infinite;
+animation:flotar 25s linear infinite;
 }
 
-@keyframes moveCloud{
-from{
-transform:translateX(-200px);
-}
-to{
-transform:translateX(110vw);
-}
+.cloud:nth-child(1){top:5%;left:-200px;font-size:70px;}
+.cloud:nth-child(2){top:15%;left:-300px;font-size:100px;}
+.cloud:nth-child(3){top:30%;left:-250px;font-size:80px;}
+.cloud:nth-child(4){top:45%;left:-200px;font-size:90px;}
+.cloud:nth-child(5){top:60%;left:-350px;font-size:70px;}
+.cloud:nth-child(6){top:75%;left:-300px;font-size:100px;}
+.cloud:nth-child(7){top:85%;left:-250px;font-size:80px;}
+
+@keyframes flotar{
+from{transform:translateX(0);}
+to{transform:translateX(120vw);}
 }
 
-/* particulas */
+/* partículas */
 
 .particle{
 position:absolute;
-width:4px;
-height:4px;
+width:6px;
+height:6px;
 background:white;
 border-radius:50%;
-opacity:0.6;
-animation:floatParticle 8s linear infinite;
+opacity:0.7;
+animation:subir linear infinite;
 }
 
-@keyframes floatParticle{
-from{
-transform:translateY(0);
-opacity:0;
-}
-50%{
-opacity:1;
-}
-to{
-transform:translateY(-300px);
-opacity:0;
-}
-}
-
-/* caja principal */
-
-.box{
-background:rgba(255,255,255,0.6);
-backdrop-filter:blur(8px);
-padding:40px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.1);
-max-width:90%;
-}
-
-h1{
-font-family:'Pacifico',cursive;
-color:#3a7fb0;
-font-size:28px;
-margin-bottom:25px;
-}
-
-button{
-background:#7fc8ff;
-border:none;
-padding:14px 28px;
-border-radius:20px;
-font-size:18px;
-font-family:'Quicksand',sans-serif;
-color:white;
-cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-background:#5bb6ff;
-transform:scale(1.05);
-}
-
-.counter{
-margin-top:25px;
-font-size:40px;
-color:#2c6d9c;
-font-family:'Pacifico',cursive;
-}
-
-/* responsive celular */
-
-@media (max-width:600px){
-
-h1{
-font-size:22px;
-}
-
-button{
-font-size:16px;
-padding:12px 22px;
-}
-
-.counter{
-font-size:32px;
-}
-
-.box{
-padding:25px;
-}
-
+@keyframes subir{
+from{transform:translateY(100vh);opacity:0;}
+10%{opacity:0.6;}
+to{transform:translateY(-10vh);opacity:0;}
 }
 
 </style>
@@ -139,84 +138,90 @@ padding:25px;
 
 <body>
 
-<div id="cloudContainer"></div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
+<div class="cloud">☁️</div>
 
-<div class="box">
+<div class="container">
 
 <h1>hola cata :3 estás ansiosa?</h1>
 
-<button onclick="mostrar()">¿cuánto falta?</button>
+<button onclick="mostrarContador()">¿cuánto falta?</button>
 
-<div class="counter" id="contador"></div>
+<div id="countdown">
+
+<div class="timebox">
+<div class="number" id="days">0</div>
+<div class="label">días</div>
+</div>
+
+<div class="timebox">
+<div class="number" id="hours">0</div>
+<div class="label">horas</div>
+</div>
+
+<div class="timebox">
+<div class="number" id="minutes">0</div>
+<div class="label">min</div>
+</div>
+
+<div class="timebox">
+<div class="number" id="seconds">0</div>
+<div class="label">seg</div>
+</div>
+
+</div>
 
 </div>
 
 <script>
 
-/* contador */
+function mostrarContador(){
+document.getElementById("countdown").style.display="block";
+}
 
-function mostrar(){
+function actualizarCuenta(){
 
-const fecha = new Date("April 2, 2026 00:00:00").getTime()
+const fechaObjetivo=new Date("April 2, 2026 00:00:00").getTime();
+const ahora=new Date().getTime();
+const diferencia=fechaObjetivo-ahora;
 
-const ahora = new Date().getTime()
+const dias=Math.floor(diferencia/(1000*60*60*24));
+const horas=Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
+const minutos=Math.floor((diferencia%(1000*60*60))/(1000*60));
+const segundos=Math.floor((diferencia%(1000*60))/1000);
 
-const diferencia = fecha - ahora
-
-const dias = Math.floor(diferencia / (1000*60*60*24))
-
-document.getElementById("contador").innerHTML = dias + " días"
+document.getElementById("days").innerText=dias;
+document.getElementById("hours").innerText=horas;
+document.getElementById("minutes").innerText=minutos;
+document.getElementById("seconds").innerText=segundos;
 
 }
 
-/* nubes irregulares */
+setInterval(actualizarCuenta,1000);
+actualizarCuenta();
 
-const container = document.getElementById("cloudContainer")
-
-function crearNube(){
-
-const nube = document.createElement("div")
-
-nube.className="cloud"
-nube.innerHTML="☁️"
-
-const size = Math.random()*70 + 40
-const top = Math.random()*80
-const duracion = Math.random()*40 + 40
-
-nube.style.fontSize = size+"px"
-nube.style.top = top+"vh"
-nube.style.animationDuration = duracion+"s"
-
-container.appendChild(nube)
-
-setTimeout(()=>{
-nube.remove()
-},duracion*1000)
-
-}
-
-setInterval(crearNube,4000)
-
-/* particulas */
+/* partículas */
 
 function crearParticula(){
 
-const p = document.createElement("div")
-p.className="particle"
+const p=document.createElement("div");
+p.classList.add("particle");
 
-p.style.left = Math.random()*100+"vw"
-p.style.top = "100vh"
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(5+Math.random()*5)+"s";
 
-document.body.appendChild(p)
+document.body.appendChild(p);
 
-setTimeout(()=>{
-p.remove()
-},8000)
+setTimeout(()=>{p.remove()},10000);
 
 }
 
-setInterval(crearParticula,500)
+setInterval(crearParticula,200);
 
 </script>
 
